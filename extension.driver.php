@@ -5,8 +5,8 @@
 
 		public function about(){
 			return array('name' => 'Section Schemas',
-						 'version' => '0.1',
-						 'release-date' => '2009-01-21',
+						 'version' => '1.1',
+						 'release-date' => '2009-04-10',
 						 'author' => array('name' => 'Nick Dunn',
 										   'website' => 'http://nick-dunn.co.uk',
 										   'email' => 'nick.dunn@airlock.com')
@@ -67,13 +67,22 @@
 				
 				$options = new XMLElement('options');
 				
-				// grab existing values for select boxes and tag lists
-				foreach($xpath->query("//*[name()='option' or name()='li']") as $option) {
-					$option_element = new XMLElement('option', $option->nodeValue);
-					if ($option->getAttribute('value')) {
-						$option_element->setAttribute('value', $option->getAttribute('value'));
+				foreach($xpath->query("//*[name()='optgroup']") as $optgroup) {
+					
+					$optgroup_element = new XMLElement('optgroup');
+					$optgroup_element->setAttribute('label', $optgroup->getAttribute('label'));
+
+					$options_xpath = new DomXPath($optgroup);
+					
+					foreach($optgroup->getElementsByTagName('option') as $option) {
+						$this->__appendOption($option, $optgroup_element);
 					}					
-					$options->appendChild($option_element);
+					
+					$options->appendChild($optgroup_element);
+				}
+				
+				foreach($xpath->query("//*[name()='li'] | *[name()='option']") as $option) {
+					$this->__appendOption($option, $options, ($field['type'] == 'taglist' ? $field['id'] : false));
 				}
 				
 				if ($options->getNumberOfChildren() > 0) {
@@ -84,6 +93,21 @@
 			}
 			
 			return $result;
+		}
+		
+		function __appendOption($option, &$container, $field_id=NULL) {
+			$option_element = new XMLElement('option', $option->nodeValue);
+
+			if ($option->getAttribute('value')) {
+				$option_element->setAttribute('value', $option->getAttribute('value'));
+			}
+			
+			if ($field_id) {
+				$total = $this->_Parent->Database->fetchCol('count', sprintf('SELECT COUNT(handle) AS count FROM sym_entries_data_%s WHERE handle="%s"', $field_id, Lang::createHandle($option->nodeValue)));
+				$option_element->setAttribute('count', $total[0]);
+			}
+
+			$container->appendChild($option_element);
 		}
 		
 	}
