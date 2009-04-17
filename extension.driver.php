@@ -52,7 +52,7 @@
 				
 				foreach($field as $key => $value) {
 					// Core attributes, these are common to all fields
-					if (in_array($key, array('id', 'type', 'required', 'label'))) {
+					if (in_array($key, array('id', 'type', 'required', 'label', 'location', 'sortorder'))) {
 						$f->setattribute($key, $value);
 					}
 					/*
