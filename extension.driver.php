@@ -96,7 +96,7 @@
 				}
 				
 				// find options that aren't children of groups, and list items (primarily for Taglists)
-				foreach($xpath->query("//*[name()='option' and not(parent::optgroup)] || //*[name()='li']") as $option) {
+				foreach($xpath->query("//*[name()='option' and not(parent::optgroup)] | //*[name()='li']") as $option) {
 					$this->__appendOption($option, $options, $field);
 				}
 				
