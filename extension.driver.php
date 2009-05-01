@@ -44,6 +44,7 @@
 			$entry->set('section_id', $section_id);
 			
 			$section_fields = $section->fetchFields();
+			$result->setAttribute('total-fields', count($section_fields));
 			
 			// for each field in the section
 			foreach($section_fields as $section_field){
