@@ -1,6 +1,8 @@
 <?php
 
-
+	// Required for some third party fields
+	require_once(CORE . '/class.administration.php');
+	
 	Class extension_Section_Schemas extends Extension{
 
 		public function about(){
