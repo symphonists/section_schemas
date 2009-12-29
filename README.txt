@@ -1,9 +1,9 @@
 Section Schemas
 ------------------------------------
-Version: 1.2
+Version: 1.3
 Author: Nick Dunn (nick.dunn@airlock.com)
-Build Date: 2009-04-16
-Requirements: Symphony 2.0.2
+Build Date: 2009-12-29
+Requirements: Symphony 2.0.6
 
 [INSTALLATION]
 1. Upload the 'section_schemas' folder in this archive to your Symphony 'extensions' folder.
