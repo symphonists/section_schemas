@@ -18,7 +18,7 @@
 		public function fetchNavigation() {
 			return array(
 				array(
-					'location'	=> 100,
+					'location'	=> 'Blueprints',
 					'name'	=> 'Section Schemas',
 					'link'	=> '/list/'
 				)
