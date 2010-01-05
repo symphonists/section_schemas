@@ -7,8 +7,8 @@
 
 		public function about(){
 			return array('name' => 'Section Schemas',
-						 'version' => '1.3',
-						 'release-date' => '2009-12-29',
+						 'version' => '1.4',
+						 'release-date' => '2010-01-05',
 						 'author' => array('name' => 'Nick Dunn',
 										   'website' => 'http://nick-dunn.co.uk',
 										   'email' => 'nick.dunn@airlock.com')
