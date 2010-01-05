@@ -87,8 +87,6 @@
 					
 					$optgroup_element = new XMLElement('optgroup');
 					$optgroup_element->setAttribute('label', $optgroup->getAttribute('label'));
-
-					$options_xpath = new DomXPath($optgroup);
 					
 					// append child options of this group
 					foreach($optgroup->getElementsByTagName('option') as $option) {
