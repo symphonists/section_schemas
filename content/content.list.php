@@ -71,7 +71,7 @@
 			
 			if (@isset($_POST['action']['save'])) {
 				
-				$blueprint = new contentBlueprintsDatasources();
+				$blueprint = new contentBlueprintsDatasources($this->_Parent);
 								
 				$sm = new SectionManager($this->_Parent);
 				$sections = $sm->fetch();
