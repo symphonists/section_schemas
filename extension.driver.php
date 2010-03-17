@@ -57,8 +57,8 @@
 				
 				foreach($field as $key => $value) {
 					// Core attributes, these are common to all fields
-					if (in_array($key, array('id', 'type', 'required', 'label', 'location', 'sortorder'))) {
-						$f->setattribute($key, $value);
+					if (in_array($key, array('id', 'type', 'required', 'label', 'location', 'show_column', 'sortorder'))) {
+						$f->setattribute(Lang::createHandle($key), General::sanitize($value));
 					}
 					/*
 						Other properties are output as element nodes. Here we filter those we
