@@ -1,8 +1,8 @@
 Section Schemas
 ------------------------------------
-Version: 1.4
+Version: 1.5
 Author: Nick Dunn (nick.dunn@airlock.com)
-Build Date: 2010-01-05
+Build Date: 2010-11-01
 Requirements: Symphony 2.0.6
 
 [INSTALLATION]
