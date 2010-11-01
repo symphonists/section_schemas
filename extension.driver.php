@@ -1,7 +1,7 @@
 <?php
 
 	// Required for some third party fields
-	require_once(CORE . '/class.administration.php');
+	// require_once(CORE . '/class.administration.php');
 	
 	Class extension_Section_Schemas extends Extension{
 
@@ -29,8 +29,8 @@
 		
 		public function getSectionSchema(&$result, $section_id) {
 		
-			$entryManager = new EntryManager($this->_Parent);
-			$sm = new SectionManager($this->_Parent);
+			$entryManager = new EntryManager(Frontend::instance());
+			$sm = new SectionManager(Frontend::instance());
 			
 			// retrieve this section
 		  	$section = $sm->fetch($section_id);
@@ -38,7 +38,7 @@
 			$result->setAttribute('id', $section_id);
 			$result->setAttribute('handle', $section->_data['handle']);
 			
-			$entry_count = intval($this->_Parent->Database->fetchVar('count', 0, "SELECT count(*) AS `count` FROM `tbl_entries` WHERE `section_id` = '".$section_id."' "));
+			$entry_count = intval(Frontend::instance()->Database->fetchVar('count', 0, "SELECT count(*) AS `count` FROM `tbl_entries` WHERE `section_id` = '".$section_id."' "));
 			$result->setAttribute('total-entries', $entry_count);
 			
 			// instantiate a dummy entry to instantiate fields and default values
@@ -144,7 +144,7 @@
 			
 			// generate counts for tags
 			if ($field['type'] == 'taglist') {
-				$total = $this->_Parent->Database->fetchCol('count', sprintf('SELECT COUNT(handle) AS count FROM sym_entries_data_%s WHERE handle="%s"', $field['id'], $handle));
+				$total = Frontend::instance()->Database->fetchCol('count', sprintf('SELECT COUNT(handle) AS count FROM sym_entries_data_%s WHERE handle="%s"', $field['id'], $handle));
 				$option_element->setAttribute('count', $total[0]);
 			}
 
