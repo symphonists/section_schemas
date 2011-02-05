@@ -10,14 +10,14 @@
 			$this->_driver = $this->_Parent->ExtensionManager->create('section_schemas');
 						
 			$this->setPageType('form');
-			$this->setTitle('Symphony &ndash; Section Schema data sources');
+			$this->setTitle('Symphony &ndash; ' . __('Section Schemas'));
 			
-			$this->appendSubheading('Section Schema data sources');
+			$this->appendSubheading(__('Section Schemas'));
 						
 			$container = new XMLElement('fieldset');
 			$container->setAttribute('class', 'settings');
 			$container->appendChild(
-				new XMLElement('legend', 'Sections')
+				new XMLElement('legend', __('Sections'))
 			);
 			
 			$group = new XMLElement('div');
@@ -39,7 +39,7 @@
 				);
 			}
 			
-			$section = Widget::Label('Create data sources for these sections:');
+			$section = Widget::Label(__('Create data sources for these sections:'));
 			$section->appendChild(Widget::Select(
 				'sections[]', $options, array(
 					'multiple'	=> 'multiple'
@@ -57,7 +57,7 @@
 			$div->setAttribute('class', 'actions');
 			
 			$attr = array('accesskey' => 's');
-			$div->appendChild(Widget::Input('action[save]', 'Save Changes', 'submit', $attr));
+			$div->appendChild(Widget::Input('action[save]', __('Save Changes'), 'submit', $attr));
 
 			$this->Form->appendChild($div);
 		}	
