@@ -5,7 +5,7 @@
 	
 	Class extension_Section_Schemas extends Extension{
 
-		private $incompatible_publishpanel = array('mediathek', 'imagecropper', 'readonlyinput');
+		private $incompatible_publishpanel = array('mediathek', 'subsectionmanager', 'imagecropper', 'readonlyinput', 'author', 'entry_versions');
 
 		public function about(){
 			return array('name' => 'Section Schemas',
