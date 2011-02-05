@@ -9,7 +9,7 @@
 
 		public function about(){
 			return array('name' => 'Section Schemas',
-						 'version' => '1.6',
+						 'version' => '1.7',
 						 'release-date' => '2011-02-05',
 						 'author' => array('name' => 'Nick Dunn',
 										   'website' => 'http://nick-dunn.co.uk',
