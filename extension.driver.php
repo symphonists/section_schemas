@@ -36,7 +36,7 @@
 		  	$section = $sm->fetch($section_id);
 			
 			$result->setAttribute('id', $section_id);
-			$result->setAttribute('handle', $section->_data['handle']);
+			$result->setAttribute('handle', $section->get('handle'));
 			
 			$entry_count = intval(Frontend::instance()->Database->fetchVar('count', 0, "SELECT count(*) AS `count` FROM `tbl_entries` WHERE `section_id` = '".$section_id."' "));
 			$result->setAttribute('total-entries', $entry_count);
@@ -144,7 +144,7 @@
 			
 			// generate counts for tags
 			if ($field['type'] == 'taglist') {
-				$total = Frontend::instance()->Database->fetchCol('count', sprintf('SELECT COUNT(handle) AS count FROM sym_entries_data_%s WHERE handle="%s"', $field['id'], $handle));
+				$total = Frontend::instance()->Database->fetchCol('count', sprintf('SELECT COUNT(handle) AS count FROM tbl_entries_data_%s WHERE handle="%s"', $field['id'], $handle));
 				$option_element->setAttribute('count', $total[0]);
 			}
 

@@ -32,10 +32,10 @@
 						
 			foreach ($sections as $section) {
 			
-				$selected = in_array('section_schema_' . str_replace('-', '_', $section->_data['handle']), array_keys($datasources));
+				$selected = in_array('section_schema_' . str_replace('-', '_', $section->get('handle')), array_keys($datasources));
 				
 				$options[] = array(
-					$section->_data['handle'], $selected, $section->_data['name']
+					$section->get('handle'), $selected, $section->get('name')
 				);
 			}
 			
@@ -78,11 +78,11 @@
 				
 				foreach ($sections as $section) {
 				
-					$file = DATASOURCES . '/data.section_schema_' . str_replace('-', '_', $section->_data['handle']) . '.php';
+					$file = DATASOURCES . '/data.section_schema_' . str_replace('-', '_', $section->get('handle')) . '.php';
 					
 					General::deleteFile($file);
 					
-					if (in_array($section->_data['handle'], $sections_post)) {
+					if (in_array($section->get('handle'), $sections_post)) {
 						
 						$dsShell = file_get_contents(TEMPLATE . '/datasource.tpl');
 						
@@ -91,7 +91,7 @@
 	require_once(TOOLKIT . '/class.fieldmanager.php');
 	require_once(TOOLKIT . '/class.entrymanager.php');", $dsShell);
 						
-						$dsShell = str_replace('<!-- CLASS NAME -->', 'section_schema_' . str_replace('-', '_', $section->_data['handle']), $dsShell);
+						$dsShell = str_replace('<!-- CLASS NAME -->', 'section_schema_' . str_replace('-', '_', $section->get('handle')), $dsShell);
 						$dsShell = str_replace('<!-- FILTERS -->', '', $dsShell);
 						$dsShell = str_replace('<!-- INCLUDED ELEMENTS -->', '', $dsShell);
 						$dsShell = str_replace('<!-- DS DEPENDANCY LIST -->', '""', $dsShell);
@@ -100,7 +100,7 @@
 						$blueprint->__injectVarList($dsShell, $params);
 						
 						$about = array(
-							'name' => 'Section Schema: ' . $section->_data['name'],
+							'name' => 'Section Schema: ' . $section->get('name'),
 							'version' => '1.0',
 							'release date' => DateTimeObj::getGMT('c'),
 							'author name' => $this->_Parent->Author->getFullName(),
@@ -110,7 +110,7 @@
 						
 						$blueprint->__injectAboutInformation($dsShell, $about);
 						
-						$dsShell = str_replace('<!-- SOURCE -->', $section->_data['id'], $dsShell);
+						$dsShell = str_replace('<!-- SOURCE -->', $section->get('id'), $dsShell);
 						
 						$dsShell = str_replace('return true;', 'return false;', $dsShell);
 						
