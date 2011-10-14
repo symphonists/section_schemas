@@ -1,10 +1,5 @@
 # Section Schemas
 
-* Version: 1.7.1
-* Author: Nick Dunn
-* Build Date: 2011-05-26
-* Requirements: Symphony 2.2
-
 ## Installation
 1. Upload the 'section_schemas' folder in this archive to your Symphony 'extensions' folder.
 2. Enable it by selecting "Section Schemas" from the System > Extensions menu, choose Enable from the with-selected menu, then click Apply.
