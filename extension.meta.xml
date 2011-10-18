@@ -2,7 +2,7 @@
 <extension id="section_schemas">
 	<name>Section Schemas</name>
 	<description>Reflect section structure (field names, default values, validation rules, tag lists etc.) into page XML.</description>
-	<url type="repo">https://github.com/nickdunn/section_schemas</url>
+	<repo type="github">https://github.com/nickdunn/section_schemas</repo>
 	<url type="discuss">http://symphony-cms.com/discuss/thread/829/</url>
 	<types>
 		<type>Other</type>
