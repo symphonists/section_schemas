@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<extension id="section_schemas">
+<extension id="section_schemas" status="released" xmlns="http://symphony-cms.com/schemas/extension/1.0">
 	<name>Section Schemas</name>
 	<description>Reflect section structure (field names, default values, validation rules, tag lists etc.) into page XML.</description>
 	<repo type="github">https://github.com/nickdunn/section_schemas</repo>
@@ -15,6 +15,8 @@
 		</author>
 	</authors>
 	<releases>
+		<release version="2.0" date="2012-03-14" min="2.3.x" />
+		<release version="1.8" date="2012-03-14" min="2.0.6" max="2.2.x" />
 		<release version="1.7" date="2011-02-05" min="2.0.6" />
 	</releases>
 </extension>
