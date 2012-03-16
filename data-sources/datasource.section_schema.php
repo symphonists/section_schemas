@@ -59,6 +59,8 @@
 			
 			Administration::instance()->Page->addScriptToHead(URL . '/extensions/section_schemas/assets/section_schemas.datasource.js', 100);
 			
+			if(is_null($settings[self::getClass()]['fields'])) $settings[self::getClass()]['fields'] = array();
+			
 			$fieldset = new XMLElement('fieldset');
 			$fieldset->setAttribute('class', 'settings contextual ' . __CLASS__);
 			$fieldset->appendChild(new XMLElement('legend', self::getName()));
@@ -139,7 +141,6 @@
 			$entry->set('section_id', $section_id);
 
 			$section_fields = $section->fetchFields();
-			$result->setAttribute('total-fields', count($section_fields));
 
 			// for each field in the section
 			foreach($section_fields as $section_field){
