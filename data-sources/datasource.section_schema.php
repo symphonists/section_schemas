@@ -28,9 +28,9 @@
 			$settings = array();
 			$settings[self::getClass()]['section'] = $this->dsParamSECTION;
 			$settings[self::getClass()]['fields'] = $this->dsParamFIELDS;
-			
+
 			if(is_null($settings[self::getClass()]['fields'])) $settings[self::getClass()]['fields'] = array();
-			
+
 			return $settings;
 		}
 
@@ -56,18 +56,18 @@
 	-------------------------------------------------------------------------*/
 
 		public static function buildEditor(XMLElement $wrapper, array &$errors = array(), array $settings = null, $handle = null) {
-			
+
 			Administration::instance()->Page->addScriptToHead(URL . '/extensions/section_schemas/assets/section_schemas.datasource.js', 100);
-			
+
 			if(is_null($settings[self::getClass()]['fields'])) $settings[self::getClass()]['fields'] = array();
-			
+
 			$fieldset = new XMLElement('fieldset');
 			$fieldset->setAttribute('class', 'settings contextual ' . __CLASS__);
 			$fieldset->appendChild(new XMLElement('legend', self::getName()));
 
 			$group = new XMLElement('div');
 			$group->setAttribute('class', 'two columns');
-			
+
 			$options = array();
 			$sections = SectionManager::fetch();
 			foreach($sections as $section) {
@@ -75,16 +75,16 @@
 					$section->get('handle'), $settings[self::getClass()]['section'] == $section->get('handle'), $section->get('name')
 				);
 			}
-			
+
 			$label = Widget::Label(__('Section'));
 			$label->setAttribute('class', 'column');
 			$label->appendChild(
 				Widget::Select('fields[' . self::getClass() . '][section]', $options)
 			);
 			$group->appendChild($label);
-			
+
 			foreach($sections as $section) {
-				
+
 				$fields = $section->fetchFields();
 				$options = array();
 				foreach($fields as $field) {
@@ -92,25 +92,25 @@
 						$field->get('element_name'), in_array($field->get('element_name'), $settings[self::getClass()]['fields']), $field->get('label') . ' (' . $field->get('type') . ')'
 					);
 				}
-				
+
 				$label = Widget::Label(__('Fields'));
 				$label->setAttribute('class', 'column fields fields-for-' . $section->get('handle'));
 				$label->appendChild(
 					Widget::Select('fields[' . self::getClass() . '][fields][]', $options, array('multiple' => 'multiple'))
 				);
 				$group->appendChild($label);
-				
+
 			}
 
 			$fieldset->appendChild($group);
 
 			$wrapper->appendChild($fieldset);
 		}
-		
+
 		public static function validate(array &$settings, array &$errors) {
 			return true;
 		}
-		
+
 		public static function prepare(array $settings, array $params, $template) {
 			return sprintf($template,
 				$params['rootelement'],
@@ -167,10 +167,18 @@
 					}
 				}
 
+				// Skip fields that have not been selected:
+				if (!in_array($field['element_name'], $this->dsParamFIELDS)) continue;
+
+				// Allow a field to define its own schema XML:
+				if (method_exists($section_field, 'appendFieldSchema')) {
+					$section_field->appendFieldSchema($f);
+					$result->appendChild($f);
+					continue;
+				}
+
 				// check that we can safely inspect output of displayPublishPanel (some custom fields do not work)
 				if (in_array($field['type'], self::$_incompatible_publishpanel)) continue;
-				
-				if (!in_array($field['element_name'], $this->dsParamFIELDS)) continue;
 
 				// grab the HTML used in the Publish entry form
 				$html = new XMLElement('html');
@@ -217,11 +225,11 @@
 
 				$result->appendChild($f);
 			}
-			
+
 			return $result;
-			
+
 		}
-		
+
 		function __appendOption($option, &$container, $field) {
 			$option_element = new XMLElement('option', $option->nodeValue);
 
@@ -249,4 +257,3 @@
 	}
 
 	return 'SectionSchemaDatasource';
-	
