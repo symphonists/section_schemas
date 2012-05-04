@@ -123,7 +123,7 @@
 		Execution
 	-------------------------------------------------------------------------*/
 
-		public function grab(array $param_pool) {
+		public function grab(array &$param_pool=NULL) {
 			$result = new XMLElement($this->dsParamROOTELEMENT);
 
 			// retrieve this section
