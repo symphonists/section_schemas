@@ -146,6 +146,10 @@
 			foreach($section_fields as $section_field){
 
 				$field = $section_field->get();
+
+				// Skip fields that have not been selected:
+				if (!in_array($field['element_name'], $this->dsParamFIELDS)) continue;
+
 				$f = new XMLElement($field['element_name']);
 				$f->setAttribute('required', $field['required']);
 
@@ -166,9 +170,6 @@
 						}
 					}
 				}
-
-				// Skip fields that have not been selected:
-				if (!in_array($field['element_name'], $this->dsParamFIELDS)) continue;
 
 				// Allow a field to define its own schema XML:
 				if (method_exists($section_field, 'appendFieldSchema')) {
