@@ -124,6 +124,8 @@
 		public function grab(array $param_pool) {
 			$result = new XMLElement($this->dsParamROOTELEMENT);
 
+			$result->setAttribute('type','section-schema');
+
 			// retrieve this section
 			$section_id = SectionManager::fetchIDFromHandle($this->dsParamSECTION);
 		  	$section = SectionManager::fetch($section_id);
