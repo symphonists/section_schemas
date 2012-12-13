@@ -249,7 +249,7 @@
 
 			// generate counts for tags
 			if ($field['type'] == 'taglist') {
-				$total = Frontend::instance()->Database->fetchCol('count', sprintf('SELECT COUNT(handle) AS count FROM tbl_entries_data_%s WHERE handle="%s"', $field['id'], $handle));
+				$total = Symphony::Database()->fetchCol('count', sprintf('SELECT COUNT(handle) AS count FROM tbl_entries_data_%s WHERE handle="%s"', $field['id'], $handle));
 				$option_element->setAttribute('count', $total[0]);
 			}
 
