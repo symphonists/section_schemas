@@ -166,7 +166,7 @@
 					*/
 					if (!in_array($key, array('id', 'type', 'required', 'label', 'show_column', 'sortorder', 'element_name', 'parent_section', 'location', 'field_id', 'related_field_id', 'static_options', 'dynamic_options', 'pre_populate_source', 'limit', 'allow_author_change'))) {
 						if (strlen($value) > 0) {
-							$f->appendChild(new XMLElement(Lang::createHandle($key), $value));
+							$f->appendChild(new XMLElement(Lang::createHandle($key), General::sanitize($value)));
 						}
 					}
 				}
@@ -249,7 +249,7 @@
 
 			// generate counts for tags
 			if ($field['type'] == 'taglist') {
-				$total = Frontend::instance()->Database->fetchCol('count', sprintf('SELECT COUNT(handle) AS count FROM tbl_entries_data_%s WHERE handle="%s"', $field['id'], $handle));
+				$total = Symphony::Database()->fetchCol('count', sprintf('SELECT COUNT(handle) AS count FROM tbl_entries_data_%s WHERE handle="%s"', $field['id'], $handle));
 				$option_element->setAttribute('count', $total[0]);
 			}
 
