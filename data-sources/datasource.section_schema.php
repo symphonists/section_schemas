@@ -166,7 +166,7 @@
 					*/
 					if (!in_array($key, array('id', 'type', 'required', 'label', 'show_column', 'sortorder', 'element_name', 'parent_section', 'location', 'field_id', 'related_field_id', 'static_options', 'dynamic_options', 'pre_populate_source', 'limit', 'allow_author_change'))) {
 						if (strlen($value) > 0) {
-							$f->appendChild(new XMLElement(Lang::createHandle($key), $value));
+							$f->appendChild(new XMLElement(Lang::createHandle($key), General::sanitize($value)));
 						}
 					}
 				}
