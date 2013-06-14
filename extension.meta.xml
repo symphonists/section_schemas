@@ -2,13 +2,16 @@
 <extension id="section_schemas" status="released" xmlns="http://symphony-cms.com/schemas/extension/1.0">
 	<name>Section Schemas</name>
 	<description>Reflect section structure (field names, default values, validation rules, tag lists etc.) into page XML.</description>
-	<repo type="github">https://github.com/nickdunn/section_schemas</repo>
+	<repo type="github">https://github.com/symphonists/section_schemas</repo>
 	<url type="discuss">http://symphony-cms.com/discuss/thread/829/</url>
 	<types>
 		<type>Other</type>
 		<type>Data Sources</type>
 	</types>
 	<authors>
+		<author>
+			<name github="symphonists" symphony="community">Symphony Community</name>
+		</author>
 		<author>
 			<name github="nickdunn" symphony="nickdunn">Nick Dunn</name>
 			<website>http://nick-dunn.co.uk</website>
