@@ -234,7 +234,7 @@
 		}
 
 		function __appendOption($option, &$container, $field) {
-			$option_element = new XMLElement('option', $option->nodeValue);
+			$option_element = new XMLElement('option', $this->__replaceAmpersands($option->nodeValue));
 
 			if (strlen($option->nodeValue) == 0) return;
 
@@ -257,6 +257,10 @@
 
 			$container->appendChild($option_element);
 		}
+		
+		private function __replaceAmpersands($value) {
+                return preg_replace('/&(?!(#[0-9]+|#x[0-9a-f]+|amp|lt|gt);)/i', '&amp;', trim($value));
+        }
 	}
 
 	return 'SectionSchemaDatasource';
