@@ -3,7 +3,7 @@
 	<name>Section Schemas</name>
 	<description>Reflect section structure (field names, default values, validation rules, tag lists etc.) into page XML.</description>
 	<repo type="github">https://github.com/symphonists/section_schemas</repo>
-	<url type="discuss">http://symphony-cms.com/discuss/thread/829/</url>
+	<url type="discuss">http://www.getsymphony.com/discuss/thread/829/</url>
 	<types>
 		<type>Other</type>
 		<type>Data Sources</type>
@@ -11,6 +11,7 @@
 	<authors>
 		<author>
 			<name github="symphonists" symphony="community">Symphony Community</name>
+			<website>http://www.getsymphony.com/</website>
 		</author>
 		<author>
 			<name github="nickdunn" symphony="nickdunn">Nick Dunn</name>
@@ -18,6 +19,9 @@
 		</author>
 	</authors>
 	<releases>
+		<release version="2.1.0" date="2016-03-06" min="2.3.x" max="2.x.x">
+			- Updated compatibility info
+		</release>
 		<release version="2.0" date="2012-03-14" min="2.3.x" />
 		<release version="1.8" date="2012-03-14" min="2.0.6" max="2.2.x" />
 		<release version="1.7" date="2011-02-05" min="2.0.6" />
